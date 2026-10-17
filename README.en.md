@@ -68,4 +68,8 @@ Data lives in `data/events.sqlite3`. Collected facts, personal state, interest p
 .venv/bin/python server.py export
 ```
 
-Google Calendar writes are not implemented. No public redistribution license has been assigned.
+Google Calendar writes are not implemented.
+
+## License
+
+[MIT License](LICENSE). Dependencies and event services retain their respective licenses and terms.
