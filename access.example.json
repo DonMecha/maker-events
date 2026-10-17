@@ -1,0 +1,6 @@
+{
+  "host": "app.example.com",
+  "team": "your-team",
+  "audience": "REPLACE_WITH_YOUR_ACCESS_APPLICATION_AUD_TAG",
+  "owner_emails": ["owner@example.test"]
+}

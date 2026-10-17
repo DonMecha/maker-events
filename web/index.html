@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#2459b8"><title>AI・メイカーイベント</title>
+  <link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="header"><div class="header-inner">
+    <div><h1>AI・メイカーイベント</h1><p class="muted small">東京・近郊 · 個人用</p></div>
+    <button id="reload" type="button" aria-label="保存済みの情報を読み直す">更新</button>
+  </div><nav aria-label="メイン画面"><button data-view="discover" aria-pressed="true">見つける</button><button data-view="mine" aria-pressed="false">マイイベント</button><button data-view="changes" aria-pressed="false">変更</button><button data-view="sources" aria-pressed="false">取得元</button></nav></header>
+  <main>
+    <div id="message" role="status" aria-live="polite"></div>
+    <section id="list-screen">
+      <div class="toolbar"><h2 id="heading">これからのイベント</h2><button id="add" type="button">＋ 公式情報を登録</button></div>
+      <div id="filters" class="filters"><label>開催日<select id="day-filter"><option value="all">すべての曜日</option><option value="off">土日祝だけ</option></select></label><label>勤務時間<select id="schedule-filter"><option value="exclude">参加が難しいものを除く</option><option value="all">難しいものも表示</option></select></label><label>興味なし<select id="visibility-filter"><option value="visible">除く（通常表示）</option><option value="hidden">興味なしにしたもの</option><option value="all">含めて表示</option></select></label><label>主催者<select id="organizer-filter"><option value="allowed">確認済みだけ</option><option value="pending">主催者要確認</option><option value="hidden">非表示に指定</option><option value="all">すべて確認する</option></select></label><label>表示<select id="period"><option value="future">これから</option><option value="all">過去も含める</option></select></label><label>日本語対応<select id="language-filter"><option value="all">要確認も含める</option><option value="ja">根拠のあるもの</option><option value="check">要確認</option></select></label><label>参加状態<select id="state-filter"><option value="all">すべて</option></select></label></div>
+      <p id="organizer-summary" class="small muted"></p>
+      <div id="cards" class="cards"><p class="empty">保存済みの情報を読み込んでいます…</p></div>
+    </section>
+    <section id="detail-screen" hidden><button id="back" type="button" class="quiet">← 一覧へ</button><div id="detail"></div></section>
+  </main>
+  <div id="visibility-toast" class="visibility-toast" role="status" aria-live="polite" hidden></div>
+  <footer><p class="small muted">申込みは公式サイトで行ってください。状態の記録だけでは申込みは完了しません。</p><p class="small muted" id="updated"></p></footer>
+  <dialog id="event-dialog"><form id="event-form">
+    <div class="toolbar"><h2 id="form-title">公式情報を登録</h2><button id="cancel-form" type="button">閉じる</button></div>
+    <p class="small muted">公式に確認した情報を登録します。この画面から外部サイトの取得・申込みは行いません。</p>
+    <label>イベント名<input name="title" required maxlength="300"></label>
+    <label>公式URL<input name="url" type="url" required maxlength="2048" placeholder="https://…"></label>
+    <div class="fields"><label>開始（日本時間）<input name="start_at" type="datetime-local"></label><label>終了（日本時間）<input name="end_at" type="datetime-local"></label></div>
+    <label class="check"><input name="all_day" type="checkbox"> 終日配信・実際の開催時刻は未確認</label>
+    <label>申込締切（日本時間・不明なら空欄）<input name="deadline_at" type="datetime-local"></label>
+    <label>会場<input name="venue" maxlength="500"></label><label>住所<input name="address" maxlength="500" placeholder="東京都…"></label>
+    <label class="check"><input name="online" type="checkbox"> オンライン開催</label>
+    <label>公式の説明・確認した情報<textarea name="description" rows="5" maxlength="30000"></textarea></label>
+    <label class="check"><input name="cancelled" type="checkbox"> 公式に中止が明記されている</label><label>中止の根拠<input name="cancel_evidence" maxlength="500"></label>
+    <p id="form-error" class="error" role="alert"></p><button type="submit" class="primary">保存する</button>
+  </form></dialog>
+</body>
+</html>
